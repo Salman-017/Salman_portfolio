@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Business Cases</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      :root {
+        --primary-color: #e53e3e;
+        --secondary-color: #2d3748;
+        --text-color: #2d3748;
+        --text-light: #718096;
+        --bg-color: #ffffff;
+        --bg-light: #f7fafc;
+        --border-color: #e2e8f0;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+      }
+      body {
+        background: var(--bg-light);
+        color: var(--text-color);
+        font-family: "Inter", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+      }
+      .main-content {
+        max-width: 1000px;
+        margin: 3.5rem auto 0 auto;
+        background: var(--bg-color);
+        border-radius: 18px;
+        box-shadow: 0 2px 24px rgba(44, 62, 80, 0.09);
+        padding: 2.5rem 2rem 2.5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      header {
+        text-align: center;
+        margin-top: 2.5rem;
+        margin-bottom: 2rem;
+      }
+      h1 {
+        color: var(--primary-color);
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        letter-spacing: -1px;
+      }
+      h2 {
+        color: var(--secondary-color);
+        font-size: 2rem;
+        font-weight: 900;
+        margin-top: 1.5rem;
+        margin-bottom: 1.2rem;
+        letter-spacing: -0.5px;
+      }
+      p {
+        font-size: 1.35rem;
+        color: var(--text-color);
+        margin-bottom: 2.2rem;
+        line-height: 1.8;
+        text-align: center;
+        font-weight: 600;
+      }
+      .demographics-section {
+        width: 100%;
+        background: #f9fafb;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(44, 62, 80, 0.06);
+        padding: 2rem 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+      .demographics-title {
+        color: var(--primary-color);
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin-bottom: 1.2rem;
+        text-align: center;
+      }
+      .demographics-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem 2rem;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+      .demographic-card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 1px 8px rgba(44, 62, 80, 0.07);
+        padding: 1.2rem 1.5rem;
+        min-width: 220px;
+        flex: 1 1 260px;
+        text-align: center;
+      }
+      .demographic-label {
+        color: var(--secondary-color);
+        font-size: 1.08rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      .demographic-value {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: 800;
+      }
+      .demographics-chart {
+        width: 100%;
+        max-width: 320px;
+        height: 180px !important;
+        margin: 1.2rem auto 0 auto;
+        display: block;
+      }
+      .button-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        justify-content: center;
+      }
+      .main-btn {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.13rem;
+        background: #f7eaea;
+        padding: 0.7rem 1.5rem;
+        border-radius: 8px;
+        border: 1px solid #f3cccc;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(229, 62, 62, 0.04);
+        display: inline-block;
+        text-align: center;
+      }
+      .main-btn:hover {
+        color: #fff;
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        box-shadow: 0 4px 16px rgba(229, 62, 62, 0.13);
+        text-decoration: none;
+      }
+      @media (max-width: 900px) {
+        .main-content {
+          padding: 1.2rem 0.5rem;
+          margin: 1.5rem 0.5rem 0 0.5rem;
+        }
+        .demographics-section {
+          padding: 1.2rem 0.5rem;
+        }
+        .demographics-grid {
+          flex-direction: column;
+          gap: 1.2rem;
+        }
+        .demographics-chart {
+          max-width: 99vw;
+        }
+      }
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2rem;
+        }
+        h2 {
+          font-size: 1.25rem;
+        }
+        p {
+          font-size: 1.05rem;
+        }
+        .main-btn {
+          font-size: 1rem;
+          padding: 0.6rem 1rem;
+        }
+        .demographics-chart {
+          max-width: 95vw;
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>YouTube Business Cases</h1>
+    </header>
+    <main class="main-content">
+      <h2>Introduction</h2>
+      <p>
+        YouTube, launched in 2005, has evolved into the world’s largest
+        video-sharing platform and second-largest search engine, with over 2.74
+        billion monthly active users as of May 2025. Operating at internet
+        scale, YouTube handles an average of 3.7 million video uploads daily,
+        supports over 70 billion daily views on YouTube Shorts, and processes
+        approximately 20,000 likes and 2,500 comments every second.
+      </p>
+
+      <section class="demographics-section">
+        <div class="demographics-title">User Demographics (2025)</div>
+        <div class="demographics-grid">
+          <div class="demographic-card">
+            <div class="demographic-label">Monthly Active Users</div>
+            <div class="demographic-value">2.74B+</div>
+          </div>
+          <div class="demographic-card">
+            <div class="demographic-label">Daily Video Uploads</div>
+            <div class="demographic-value">3.7M+</div>
+          </div>
+          <div class="demographic-card">
+            <div class="demographic-label">Shorts Daily Views</div>
+            <div class="demographic-value">70B+</div>
+          </div>
+          <div class="demographic-card">
+            <div class="demographic-label">Likes per Second</div>
+            <div class="demographic-value">20,000</div>
+          </div>
+          <div class="demographic-card">
+            <div class="demographic-label">Comments per Second</div>
+            <div class="demographic-value">2,500</div>
+          </div>
+        </div>
+        <canvas id="ageChart" class="demographics-chart"></canvas>
+      </section>
+
+      <div class="button-row">
+        <a href="index.html#youtube" class="main-btn"
+          >&larr; Back to Portfolio</a
+        >
+      </div>
+      <div class="youtube-links-grid" style="width: 100%; margin-top: 2rem">
+        <a href="b1.html" class="business-case-card">
+          <h3>Business Case 1</h3>
+          <p>Handling Video Uploads, Streaming, and Processing</p>
+        </a>
+        <a href="b2.html" class="business-case-card">
+          <h3>Business Case 2</h3>
+          <p>Personalizing and Scaling YouTube Shorts Recommendations</p>
+        </a>
+        <a href="b3.html" class="business-case-card">
+          <h3>Business Case 3</h3>
+          <p>Auto Completion of Search Query</p>
+        </a>
+        <a href="b4.html" class="business-case-card">
+          <h3>Business Case 4</h3>
+          <p>In-Video AI Query Assistant for YouTube</p>
+        </a>
+        <a href="b5.html" class="business-case-card">
+          <h3>Business Case 5</h3>
+          <p>Detecting YouTube Comment Spam</p>
+        </a>
+      </div>
+    </main>
+    <script>
+      const ctx = document.getElementById("ageChart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"],
+          datasets: [
+            {
+              label: "User % by Age Group",
+              data: [8, 31, 28, 15, 9, 5, 4],
+              backgroundColor: [
+                "#e53e3e",
+                "#f56565",
+                "#feb2b2",
+                "#fbb6ce",
+                "#f6ad55",
+                "#68d391",
+                "#63b3ed",
+              ],
+              borderRadius: 6,
+              barThickness: 24,
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            legend: { display: false },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 40,
+              ticks: { stepSize: 5 },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

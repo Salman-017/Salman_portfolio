@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detecting YouTube Comment Spam</title>
+    <style>
+      body {
+        font-family: "Inter", Arial, sans-serif;
+        background: #181c25;
+        color: #f5f6fa;
+        margin: 0;
+        padding: 0;
+      }
+      header,
+      main {
+        max-width: 100vw;
+        margin: 0;
+      }
+      header {
+        text-align: center;
+        margin: 2.5rem 0 1.5rem 0;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        color: #e53e3e;
+        font-family: inherit;
+        font-weight: 800;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-top: 2.5rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      h3 {
+        font-size: 1.3rem;
+      }
+      ul,
+      ol {
+        margin-left: 2rem;
+        margin-bottom: 1.2rem;
+        font-size: 1.15rem;
+      }
+      li {
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+      p {
+        color: #e2e8f0;
+        font-size: 1.18rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.8;
+        font-weight: 500;
+      }
+      a,
+      .back-btn {
+        color: #e53e3e;
+        text-decoration: none;
+        font-weight: 700;
+        transition: color 0.2s;
+      }
+      a:hover,
+      .back-btn:hover {
+        color: #fff;
+        background: #e53e3e;
+        text-decoration: underline;
+      }
+      .back-btn {
+        display: inline-block;
+        padding: 10px 22px;
+        background: #23263a;
+        border-radius: 8px;
+        border: 1.5px solid #e53e3e;
+        margin: 24px 0 24px 0;
+        font-size: 1.08rem;
+        font-weight: bold;
+        transition: color 0.2s, background 0.2s;
+      }
+      main {
+        background: #23263a;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
+        padding: 2.5rem 1.5rem 2rem 1.5rem;
+        width: 95vw;
+        max-width: 950px;
+        margin: 0 auto 2rem auto;
+      }
+      img {
+        display: block;
+        max-width: 700px;
+        width: 90vw;
+        height: auto;
+        margin: 32px auto 24px auto;
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(229, 62, 62, 0.13),
+          0 2px 8px rgba(44, 62, 80, 0.13);
+        background: #fff;
+        border: 3px solid #e53e3e;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      img:hover {
+        transform: scale(1.03) rotate(-1deg);
+        box-shadow: 0 16px 48px rgba(229, 62, 62, 0.18),
+          0 4px 16px rgba(44, 62, 80, 0.18);
+      }
+      pre,
+      code {
+        background: #23263a;
+        color: #f5f6fa;
+        padding: 14px 18px;
+        border-radius: 8px;
+        font-size: 1.08rem;
+        font-family: "Fira Mono", "Consolas", monospace;
+        overflow-x: auto;
+        display: block;
+        margin-bottom: 1.2rem;
+        border: 1px solid #e53e3e;
+      }
+      figcaption {
+        color: #e2e8f0;
+        font-size: 1rem;
+        text-align: center;
+        margin-top: -1rem;
+        margin-bottom: 2rem;
+      }
+      @media (max-width: 900px) {
+        main {
+          padding: 1.2rem 0.5rem;
+          width: 99vw;
+        }
+        img {
+          max-width: 99vw;
+          width: 99vw;
+        }
+        h1 {
+          font-size: 1.7rem;
+        }
+        h2 {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Detecting YouTube Comment Spam</h1>
+      <div style="display: flex; justify-content: center; margin: 1.5rem 0">
+        <a
+          href="youtube.html"
+          class="back-btn"
+          style="display: inline-block; text-align: center"
+        >
+          &larr; Back to YouTube Page
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2>Problem</h2>
+        <p>
+          The comment sections on YouTube are often flooded with spam —
+          repetitive, promotional, or malicious content that disrupts meaningful
+          interactions. These spam comments not only clutter the platform but
+          also undermine user experience by impeding genuine discussions and
+          exposing users to potential cybersecurity threats, such as
+          misinformation or malware.
+        </p>
+      </section>
+
+      <section>
+        <h2>Solution: Random Forest Classifier</h2>
+        <p>
+          To tackle the issue of spam in YouTube comments, we can implement a
+          <strong>Random Forest Classifier</strong>, which has demonstrated
+          exceptional performance in spam detection.
+        </p>
+
+        <h3>Random Forest Effectiveness:</h3>
+        <ul>
+          <li>
+            <strong>High Accuracy:</strong> Provides reliable and precise
+            predictions.
+          </li>
+          <li>
+            <strong>Works with Larger Datasets:</strong> Efficient processing of
+            high-dimensional data.
+          </li>
+          <li>
+            <strong>Handles Missing Values:</strong> Robust against incomplete
+            data.
+          </li>
+          <li>
+            <strong>Reduces Overfitting:</strong> Ensures generalization to
+            unseen data.
+          </li>
+        </ul>
+        <img
+          src="Random_Forest.png"
+          alt="Random Forest Classifier Illustration"
+        />
+      </section>
+
+      <section>
+        <h2>How Random Forest Works</h2>
+        <ul>
+          <li>Each tree makes its own decisions independently.</li>
+          <li>
+            Random parts of the data are used to train each tree, reducing
+            mistakes.
+          </li>
+          <li>
+            Having sufficient data ensures that trees learn unique patterns.
+          </li>
+          <li>
+            Combining predictions from multiple trees improves overall accuracy.
+          </li>
+        </ul>
+        <img src="RF_pipeline.png" alt="Random Forest Pipeline" />
+      </section>
+
+      <section>
+        <h2>Implementation Steps</h2>
+
+        <h3>Step 1: Collect and Label the Dataset</h3>
+        <p>
+          Start with a small dataset of 15 YouTube comments, manually labeled as
+          "Ham" (0) or "Spam" (1).
+        </p>
+        <img src="b5_step1.png" alt="Dataset Collection Example" />
+
+        <h3>Step 2: Preprocess the Text Data</h3>
+        <p>
+          Convert raw text into a format suitable for the Random Forest model:
+        </p>
+        <ul>
+          <li>Convert text to lowercase</li>
+          <li>Remove punctuation and stop words</li>
+          <li>Tokenize the text</li>
+        </ul>
+        <img src="b5_step2.png" alt="Text Preprocessing Workflow" />
+
+        <h3>Step 3: TF-IDF Vectorization</h3>
+        <p>
+          Each comment is represented as a 42-dimensional vector using the
+          TF-IDF technique.
+        </p>
+
+        <h3>Step 4: Train and Test the Random Forest Algorithm</h3>
+
+        <h3>Python Code Example:</h3>
+        <pre>
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.feature_extraction.text import TfidfVectorizer
+import warnings
+
+warnings.filterwarnings('ignore')
+
+# Sample Data
+data = {
+    'Comment': [
+        "Great video, loved the content!",
+        "Check out my channel for free stuff!",
+        "This is so helpful, thanks for sharing.",
+        "Win a free iPhone, click here!",
+        "Amazing work, keep it up!",
+        "Subscribe to my channel for giveaways!",
+        "I learned a lot from this video.",
+        "Get rich quick, visit this link!",
+        "Nice editing, what software do you use?",
+        "Free money, click now!",
+        "Thanks for the tutorial, very clear!",
+        "Buy cheap followers here!",
+        "Your videos are always so inspiring.",
+        "Download this app to earn cash!",
+        "Can you make more videos like this?"
+    ],
+    'Label': [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+}
+
+# Convert to DataFrame
+df = pd.DataFrame(data)
+
+# Vectorize text data
+vectorizer = TfidfVectorizer(lowercase=True, stop_words='english')
+X = vectorizer.fit_transform(df['Comment'])
+y = df['Label']
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Random Forest Model
+rf_classifier = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_classifier.fit(X_train, y_train)
+
+# Predictions and evaluation
+y_pred = rf_classifier.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+classification_rep = classification_report(y_test, y_pred)
+
+print(f"Accuracy: {accuracy:.2f}")
+print("\nClassification Report:\n", classification_rep)
+
+# Predict on a sample comment
+sample = X_test[0:1]
+prediction = rf_classifier.predict(sample)
+sample_text = df.iloc[X_test.indices[0]]['Comment']
+print(f"\nSample Comment: {sample_text}")
+print(f"Predicted Label: {'Spam' if prediction[0] == 1 else 'Ham'}")
+    </pre
+        >
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>In-Video AI Query Assistant for YouTube</title>
+    <style>
+      body {
+        font-family: "Inter", Arial, sans-serif;
+        background: #181c25;
+        color: #f5f6fa;
+        margin: 0;
+        padding: 0;
+      }
+      header,
+      main {
+        max-width: 100vw;
+        margin: 0;
+      }
+      header {
+        text-align: center;
+        margin: 2.5rem 0 1.5rem 0;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        color: #e53e3e;
+        font-family: inherit;
+        font-weight: 800;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-top: 2.5rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      h3 {
+        font-size: 1.3rem;
+      }
+      ul,
+      ol {
+        margin-left: 2rem;
+        margin-bottom: 1.2rem;
+        font-size: 1.15rem;
+      }
+      li {
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+      p {
+        color: #e2e8f0;
+        font-size: 1.18rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.8;
+        font-weight: 500;
+      }
+      a,
+      .back-btn {
+        color: #e53e3e;
+        text-decoration: none;
+        font-weight: 700;
+        transition: color 0.2s;
+      }
+      a:hover,
+      .back-btn:hover {
+        color: #fff;
+        background: #e53e3e;
+        text-decoration: underline;
+      }
+      .back-btn {
+        display: inline-block;
+        padding: 10px 22px;
+        background: #23263a;
+        border-radius: 8px;
+        border: 1.5px solid #e53e3e;
+        margin: 24px 0 24px 0;
+        font-size: 1.08rem;
+        font-weight: bold;
+        transition: color 0.2s, background 0.2s;
+      }
+      main {
+        background: #23263a;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
+        padding: 2.5rem 1.5rem 2rem 1.5rem;
+        width: 95vw;
+        max-width: 950px;
+        margin: 0 auto 2rem auto;
+      }
+      img {
+        display: block;
+        max-width: 700px;
+        width: 90vw;
+        height: auto;
+        margin: 32px auto 24px auto;
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(229, 62, 62, 0.13),
+          0 2px 8px rgba(44, 62, 80, 0.13);
+        background: #fff;
+        border: 3px solid #e53e3e;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      img:hover {
+        transform: scale(1.03) rotate(-1deg);
+        box-shadow: 0 16px 48px rgba(229, 62, 62, 0.18),
+          0 4px 16px rgba(44, 62, 80, 0.18);
+      }
+      pre,
+      code {
+        background: #23263a;
+        color: #f5f6fa;
+        padding: 14px 18px;
+        border-radius: 8px;
+        font-size: 1.08rem;
+        font-family: "Fira Mono", "Consolas", monospace;
+        overflow-x: auto;
+        display: block;
+        margin-bottom: 1.2rem;
+        border: 1px solid #e53e3e;
+      }
+      figcaption {
+        color: #e2e8f0;
+        font-size: 1rem;
+        text-align: center;
+        margin-top: -1rem;
+        margin-bottom: 2rem;
+      }
+      @media (max-width: 900px) {
+        main {
+          padding: 1.2rem 0.5rem;
+          width: 99vw;
+        }
+        img {
+          max-width: 99vw;
+          width: 99vw;
+        }
+        h1 {
+          font-size: 1.7rem;
+        }
+        h2 {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>In-Video AI Query Assistant for YouTube</h1>
+      <div style="display: flex; justify-content: center; margin: 1.5rem 0">
+        <a
+          href="youtube.html"
+          class="back-btn"
+          style="display: inline-block; text-align: center"
+        >
+          &larr; Back to YouTube Page
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2>Introduction</h2>
+        <p>
+          The In-Video AI Query Assistant is a novel feature proposed for
+          YouTube to enhance user engagement by allowing viewers to resolve
+          doubts directly within the video player interface. By integrating an
+          AI-powered query tool, accessible via a button, users can pause a
+          video, input a query, and receive contextual, personalized answers
+          without leaving the platform.
+        </p>
+        <p>
+          This addresses the critical issue of users being distracted by
+          external searches, which risks disengagement and reduced watch time —
+          a key driver of ad revenue.
+        </p>
+      </section>
+
+      <section>
+        <h2>Problem Statement</h2>
+        <p>
+          When users encounter doubts while watching YouTube videos, they often
+          pause and search external platforms or AI tools. This disrupts the
+          viewing experience, risks users abandoning the video, and decreases
+          total watch time.
+        </p>
+      </section>
+
+      <section>
+        <h2>System Design</h2>
+        <img src="b4_system.png" alt="System Design Diagram" />
+
+        <h3>1. User Interface (UI)</h3>
+        <ul>
+          <li>
+            An “Ask AI” button integrated into the YouTube video player
+            interface.
+          </li>
+          <li>
+            Provides a text input field for query submission and displays
+            AI-generated responses.
+          </li>
+        </ul>
+        <img src="b4_user.png" alt="User Interface Mockup" />
+
+        <h3>2. Query Processor</h3>
+        <ul>
+          <li>
+            Captures user queries along with contextual metadata (video ID,
+            timestamp, user ID, etc.).
+          </li>
+          <li>
+            Performs natural language processing (NLP) for intent detection and
+            semantic similarity analysis to identify or reuse existing queries.
+          </li>
+        </ul>
+        <img src="b4_query.png" alt="Query Processor Diagram" />
+
+        <h3>3. Graph Database</h3>
+        <ul>
+          <li>
+            Stores video metadata (video ID, transcript, timestamps, tags), user
+            data (user ID, watch history), and query data (query text,
+            timestamp, video ID).
+          </li>
+          <li>
+            Models relationships between videos, users, queries, and concepts to
+            provide context for answers.
+          </li>
+        </ul>
+
+        <h3>4. AI Model (BERT)</h3>
+        <ul>
+          <li>
+            A fine-tuned BERT model processes queries with video context
+            (transcript segments, concepts) to generate accurate, video-specific
+            responses.
+          </li>
+        </ul>
+        <img src="b4_offline.png" alt="Offline Processing Architecture" />
+      </section>
+
+      <section>
+        <h2>Data Pipeline & Processing</h2>
+        <h3>1. Data Collection</h3>
+        <p>
+          The system ingests multi-source data streams including video metadata
+          (IDs, transcripts, tags) and anonymized user behavior data such as
+          watch history, interaction logs, and prior query submissions.
+        </p>
+
+        <h3>2. Processing</h3>
+        <p>
+          Advanced NLP pipelines parse transcripts to perform entity
+          recognition, topic segmentation, and semantic embedding for effective
+          intent detection and context comprehension.
+        </p>
+
+        <h3>3. Storage</h3>
+        <p>
+          Transcript embeddings, user-query mappings, and extracted concepts are
+          stored in a structured format to generate and maintain an up-to-date
+          graph.
+        </p>
+
+        <h3>4. Graph Database</h3>
+        <p>
+          A graph is generated from the structured data and stored in a graph
+          database, facilitating efficient contextual query resolution and
+          personalized recommendations.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

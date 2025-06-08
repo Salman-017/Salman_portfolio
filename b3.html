@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Auto Completion of Search Query</title>
+    <style>
+      body {
+        font-family: "Inter", Arial, sans-serif;
+        background: #181c25;
+        color: #f5f6fa;
+        margin: 0;
+        padding: 0;
+      }
+      header,
+      main {
+        max-width: 100vw;
+        margin: 0;
+      }
+      header {
+        text-align: center;
+        margin: 2.5rem 0 1.5rem 0;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        color: #e53e3e;
+        font-family: inherit;
+        font-weight: 800;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-top: 2.5rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      h3 {
+        font-size: 1.3rem;
+      }
+      ul,
+      ol {
+        margin-left: 2rem;
+        margin-bottom: 1.2rem;
+        font-size: 1.15rem;
+      }
+      li {
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+      p {
+        color: #e2e8f0;
+        font-size: 1.18rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.8;
+        font-weight: 500;
+      }
+      a,
+      .back-btn {
+        color: #e53e3e;
+        text-decoration: none;
+        font-weight: 700;
+        transition: color 0.2s;
+      }
+      a:hover,
+      .back-btn:hover {
+        color: #fff;
+        background: #e53e3e;
+        text-decoration: underline;
+      }
+      .back-btn {
+        display: inline-block;
+        padding: 10px 22px;
+        background: #23263a;
+        border-radius: 8px;
+        border: 1.5px solid #e53e3e;
+        margin: 24px 0 24px 0;
+        font-size: 1.08rem;
+        font-weight: bold;
+        transition: color 0.2s, background 0.2s;
+      }
+      main {
+        background: #23263a;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
+        padding: 2.5rem 1.5rem 2rem 1.5rem;
+        width: 95vw;
+        max-width: 950px;
+        margin: 0 auto 2rem auto;
+      }
+      img {
+        display: block;
+        max-width: 700px;
+        width: 90vw;
+        height: auto;
+        margin: 32px auto 24px auto;
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(229, 62, 62, 0.13),
+          0 2px 8px rgba(44, 62, 80, 0.13);
+        background: #fff;
+        border: 3px solid #e53e3e;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      img:hover {
+        transform: scale(1.03) rotate(-1deg);
+        box-shadow: 0 16px 48px rgba(229, 62, 62, 0.18),
+          0 4px 16px rgba(44, 62, 80, 0.18);
+      }
+      pre,
+      code {
+        background: #23263a;
+        color: #f5f6fa;
+        padding: 14px 18px;
+        border-radius: 8px;
+        font-size: 1.08rem;
+        font-family: "Fira Mono", "Consolas", monospace;
+        overflow-x: auto;
+        display: block;
+        margin-bottom: 1.2rem;
+        border: 1px solid #e53e3e;
+      }
+      figcaption {
+        color: #e2e8f0;
+        font-size: 1rem;
+        text-align: center;
+        margin-top: -1rem;
+        margin-bottom: 2rem;
+      }
+      @media (max-width: 900px) {
+        main {
+          padding: 1.2rem 0.5rem;
+          width: 99vw;
+        }
+        img {
+          max-width: 99vw;
+          width: 99vw;
+        }
+        h1 {
+          font-size: 1.7rem;
+        }
+        h2 {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Auto Completion of Search Query</h1>
+      <div style="display: flex; justify-content: center; margin: 1.5rem 0">
+        <a
+          href="youtube.html"
+          class="back-btn"
+          style="display: inline-block; text-align: center"
+        >
+          &larr; Back to YouTube Page
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2>Features</h2>
+        <ul>
+          <li>Real-time suggestions as the user types.</li>
+          <li>Return 5–10 suggestions per prefix.</li>
+          <li>Suggestions based on frequency and search history.</li>
+          <li>Response time must be less than 100 milliseconds.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>API Endpoints</h2>
+        <p>
+          <code>GET /suggestions?prefix=&lt;prefix&gt;</code>
+        </p>
+        <p>Example for the word "kind":</p>
+        <ul>
+          <li><code>GET /suggestions?prefix=k</code></li>
+          <li><code>GET /suggestions?prefix=ki</code></li>
+          <li><code>GET /suggestions?prefix=kin</code></li>
+          <li><code>GET /suggestions?prefix=kind</code></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Data Structure: Trie</h2>
+        <ul>
+          <li>A Trie data structure is generated periodically.</li>
+          <li>Each node stores possible suggestions for a prefix.</li>
+          <li>
+            Example: At prefix " ki ", suggestions could be "kind", "kill",
+            "king".
+          </li>
+          <li>
+            Frequencies of different search strings are computed, and the Trie
+            is rebuilt accordingly.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Architecture</h2>
+        <img src="b3_arch.png" alt="Auto-complete architecture diagram" />
+
+        <h3>Offline Process</h3>
+        <ul>
+          <li>Search logs are collected and stored.</li>
+          <li>
+            A Spark job processes logs to compute query frequencies and identify
+            popular terms.
+          </li>
+          <li>
+            The Trie is generated or updated based on new trends and user
+            history.
+          </li>
+          <li>The updated Trie replaces the old version in the database.</li>
+        </ul>
+
+        <h3>Online Process</h3>
+        <ul>
+          <li>User types a prefix <code>kin</code></li>
+          <li>
+            Client sends <code>GET /suggestions?prefix=kin</code> to the API.
+          </li>
+          <li>
+            The API checks the cache for suggestions. If unavailable, it queries
+            the database’s Trie.
+          </li>
+          <li>
+            The Trie returns 5–10 suggestions ranked by frequency or
+            personalized metrics.
+          </li>
+          <li>The API responds to the client in under 100 milliseconds.</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

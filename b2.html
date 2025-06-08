@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Business case 2</title>
+    <style>
+      body {
+        font-family: "Inter", Arial, sans-serif;
+        background: #181c25;
+        color: #f5f6fa;
+        margin: 0;
+        padding: 0;
+      }
+      header,
+      main {
+        max-width: 100vw;
+        margin: 0;
+      }
+      header {
+        text-align: center;
+        margin: 2.5rem 0 1.5rem 0;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        color: #e53e3e;
+        font-family: inherit;
+        font-weight: 800;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-top: 2.5rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      h3 {
+        font-size: 1.3rem;
+      }
+      ul,
+      ol {
+        margin-left: 2rem;
+        margin-bottom: 1.2rem;
+        font-size: 1.15rem;
+      }
+      li {
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+      p {
+        color: #e2e8f0;
+        font-size: 1.18rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.8;
+        font-weight: 500;
+      }
+      a,
+      .back-btn {
+        color: #e53e3e;
+        text-decoration: none;
+        font-weight: 700;
+        transition: color 0.2s;
+      }
+      a:hover,
+      .back-btn:hover {
+        color: #fff;
+        background: #e53e3e;
+        text-decoration: underline;
+      }
+      .back-btn {
+        display: inline-block;
+        padding: 10px 22px;
+        background: #23263a;
+        border-radius: 8px;
+        border: 1.5px solid #e53e3e;
+        margin: 24px 0 24px 0;
+        font-size: 1.08rem;
+        font-weight: bold;
+        transition: color 0.2s, background 0.2s;
+      }
+      main {
+        background: #23263a;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
+        padding: 2.5rem 1.5rem 2rem 1.5rem;
+        width: 95vw;
+        max-width: 950px;
+        margin: 0 auto 2rem auto;
+      }
+      img {
+        display: block;
+        max-width: 700px;
+        width: 90vw;
+        height: auto;
+        margin: 32px auto 24px auto;
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(229, 62, 62, 0.13),
+          0 2px 8px rgba(44, 62, 80, 0.13);
+        background: #fff;
+        border: 3px solid #e53e3e;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      img:hover {
+        transform: scale(1.03) rotate(-1deg);
+        box-shadow: 0 16px 48px rgba(229, 62, 62, 0.18),
+          0 4px 16px rgba(44, 62, 80, 0.18);
+      }
+      pre,
+      code {
+        background: #23263a;
+        color: #f5f6fa;
+        padding: 14px 18px;
+        border-radius: 8px;
+        font-size: 1.08rem;
+        font-family: "Fira Mono", "Consolas", monospace;
+        overflow-x: auto;
+        display: block;
+        margin-bottom: 1.2rem;
+        border: 1px solid #e53e3e;
+      }
+      figcaption {
+        color: #e2e8f0;
+        font-size: 1rem;
+        text-align: center;
+        margin-top: -1rem;
+        margin-bottom: 2rem;
+      }
+      @media (max-width: 900px) {
+        main {
+          padding: 1.2rem 0.5rem;
+          width: 99vw;
+        }
+        img {
+          max-width: 99vw;
+          width: 99vw;
+        }
+        h1 {
+          font-size: 1.7rem;
+        }
+        h2 {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personalizing and Scaling YouTube Shorts Recommendations</title>
+  </head>
+  <body>
+    <header>
+      <h1>Personalizing and Scaling YouTube Shorts Recommendations</h1>
+      <div style="display: flex; justify-content: center; margin: 1.5rem 0">
+        <a
+          href="youtube.html"
+          class="back-btn"
+          style="display: inline-block; text-align: center"
+        >
+          &larr; Back to YouTube Page
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2>Introduction</h2>
+        <p>
+          When I conducted a small survey on user preferences — "If you want to
+          spend some time watching short, entertaining videos, which platform
+          would you choose and why?" — 95% of the responses did not choose
+          YouTube Shorts. Their feedback included:
+        </p>
+        <ul>
+          <li>
+            The content that appears on Shorts is usually repetitive each time
+            you scroll. Instagram's feed is more personalized. The Shorts feed
+            typically follows the first short you clicked on.
+          </li>
+          <li>
+            Many don’t watch YouTube Shorts much because the videos often feel
+            less relevant to them.
+          </li>
+          <li>Instagram Reels are more personalized and offer better UI/UX.</li>
+          <li>
+            Reels provide better real-life experience videos and trigger
+            dopamine as we see real-life instances. It’s easier to watch reels
+            on-screen with fewer buttons, while YouTube Shorts appear messy due
+            to excessive on-screen controls.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Importance</h2>
+        <p>
+          YouTube Shorts is projected to grow from $3.1 billion in ad revenue in
+          2025 to $8.7 billion by 2029, driven by 70 billion daily views. It’s a
+          crucial tool to compete with TikTok and attract younger audiences.
+        </p>
+      </section>
+
+      <section>
+        <h2>Shorts Suggestions</h2>
+        <p>
+          YouTube suggests shorts based on user history or sometimes randomly.
+          The appearance and topics of shorts usually follow the first short a
+          user clicks on.
+        </p>
+      </section>
+
+      <section>
+        <h2>Improvements</h2>
+
+        <article>
+          <h3>1. New Users (No History)</h3>
+          <p>
+            New users lack historical interaction data, while existing users
+            need recommendations that evolve. We aim to:
+          </p>
+          <ul>
+            <li>Recommend trending but diverse content.</li>
+            <li>Dynamically track and respond to engagement.</li>
+            <li>Avoid repetitive content.</li>
+            <li>
+              Personalize future recommendations based on real-time watch
+              behavior.
+            </li>
+          </ul>
+
+          <section>
+            <h4>a. Priority Queue (Trending Shorts Heap)</h4>
+            <p>
+              <strong>Purpose:</strong> Store and retrieve top-N trending shorts
+              by engagement.
+            </p>
+            <ul>
+              <li>
+                <strong>Structure:</strong> Max-Heap sorted by engagement score.
+              </li>
+              <li>
+                <strong>Score Function:</strong>
+                <pre>
+score = α * likes + β * avg_watch_time + γ * shares + δ * recency_weight</pre
+                >
+              </li>
+              <li>
+                <strong>Recency Weight Formula (Linear Decay):</strong>
+                <pre>
+recency_weight = max(0.1, 1 - (now - upload_time) / max_lifetime)</pre
+                >
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>b. Binary Tree (User Preference Tree)</h4>
+            <p>
+              <strong>Purpose:</strong> Adaptively organize content topics per
+              user.
+            </p>
+            <ul>
+              <li>Each node contains a set of 3 shorts from the same topic.</li>
+              <li>Left child: Different topic.</li>
+              <li>Right child: Similar topic (deep dive).</li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>c. HashSet (Seen Shorts)</h4>
+            <p><strong>Purpose:</strong> Prevent duplicate recommendations.</p>
+          </section>
+
+          <section>
+            <h4>d. Blocklists (Sets for Creators & Topics)</h4>
+            <pre>
+blocked_creators: Set&lt;creator_id&gt;
+blocked_topics: Set&lt;topic_id&gt;
+      </pre
+            >
+          </section>
+
+          <section>
+            <h4>Recommendation Workflow</h4>
+            <ol>
+              <li>Retrieve 5 diverse shorts from the priority queue.</li>
+              <li>Display them side-by-side to the user.</li>
+            </ol>
+
+            <h5>Tree Insertion Logic</h5>
+            <ul>
+              <li>Create the root node from the first watched video topic.</li>
+              <li>
+                Insert 2 additional shorts of the same topic into the node.
+              </li>
+            </ul>
+
+            <h5>Behavioral Algorithm for Navigation</h5>
+            <pre>
+watched_count = count(watched_time &gt; 30s)
+skipped_count = count(watched_time &lt; 10s)
+liked_count = count(short.liked == True)
+avg_watch_ratio = average(watched_time / duration for each short)
+
+if skipped_count &gt;= 2:
+    move_to(node.left)
+elif watched_count == 3:
+    move_to(node.right)
+else:
+    if liked_count &gt;= 2 or avg_watch_ratio &gt; 0.7:
+        move_to(node.right)
+    elif avg_watch_ratio &lt; 0.3:
+        move_to(node.left)
+    else:
+        stay_and_refresh_node()
+      </pre
+            >
+
+            <h5>Node Creation & Maintenance</h5>
+            <ul>
+              <li>
+                Create missing branches using:
+                <ul>
+                  <li>Related topics from a topic graph.</li>
+                  <li>Fresh shorts from the trending heap (PQ).</li>
+                </ul>
+              </li>
+              <li>
+                Filter out:
+                <ul>
+                  <li>seen_shorts</li>
+                  <li>blocked_creators</li>
+                  <li>blocked_topics</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+        </article>
+
+        <article>
+          <h3>2. Existing Users (With History)</h3>
+          <p>Consider user history and subscriptions:</p>
+          <pre>
+priority_queue = MaxHeap()
+
+for short in all_shorts:
+    if short.creator in user.blocked_creators or short.topic in user.blocked_topics:
+        continue
+
+    topic_affinity = user.topic_weights.get(short.topic, 0)
+    creator_affinity = 1 if short.creator in user.subscribed_creators else 0
+    recent_match = is_similar_to_recent_history(short, user.history)
+
+    score = (
+        α * short.engagement_score +
+        β * topic_affinity +
+        γ * creator_affinity +
+        δ * recent_match +
+        ε * compute_recency_weight(short.upload_time)
+    )
+
+    priority_queue.push((score, short))
+    </pre
+          >
+        </article>
+      </section>
+
+      <section>
+        <h2>Building a Recommendation System</h2>
+        <ol>
+          <li>
+            <strong>User Engagement Analysis:</strong> Collect data on what
+            users watch, like, and share, and how long they engage with specific
+            content types.
+          </li>
+          <li>
+            <strong>Content Understanding:</strong> Categorize videos based on
+            factors like content type, genre, audio, and visuals using
+            clustering and unsupervised machine learning.
+          </li>
+          <li>
+            <strong>User Profiling:</strong> Create dynamic user profiles that
+            evolve based on engagement history and preferences.
+          </li>
+          <li>
+            <strong>Collaborative Filtering:</strong> Recommend content enjoyed
+            by similar users with shared preferences.
+          </li>
+        </ol>
+
+        <figure>
+          <img
+            src="collaborative_filtering.png"
+            alt="Collaborative Filtering Diagram"
+          />
+          <figcaption>Collaborative Filtering Recommendation Model</figcaption>
+        </figure>
+
+        <ol start="5">
+          <li>
+            <strong>Real-Time Adaptation:</strong> Continuously update
+            recommendations based on changes in user behavior to maintain
+            relevance and prevent content fatigue.
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Handling Large Data</h2>
+        <p>
+          Implement advanced models like Two Towers neural networks for
+          real-time handling of billions of content options, using a multi-stage
+          approach for ranking content:
+        </p>
+        <ol>
+          <li>
+            <strong>Retrieval of Data:</strong> Narrow down thousands of shorts
+            to a few hundred using heuristics, Word2Vec, and Two Towers
+            architectures.
+          </li>
+          <li>
+            <strong>Ranking Stages:</strong> Use a lightweight first-stage
+            ranker and a powerful second-stage MTML model, with final reranking
+            for integrity and diversity.
+          </li>
+        </ol>
+
+        <figure>
+          <img src="b2_arch.png" alt="Recommendation Architecture Diagram" />
+          <figcaption>
+            Multi-stage Recommendation System Architecture
+          </figcaption>
+        </figure>
+
+        <p>
+          Use feedback mechanisms and give users control over content
+          recommendations through features like dislike options and category
+          restrictions.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

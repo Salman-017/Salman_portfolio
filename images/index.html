@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Business Case 1</title>
+  </head>
+  <body>
+    <header>
+      <h1>Handling Video Uploads, Video Streaming, and Processing</h1>
+      <nav><a href="Youtube.html">&larr; Back to YouTube Cases</a></nav>
+    </header>
+
+    <main>
+      <section>
+        <h2>📈 Capacity Estimation</h2>
+        <p>User & Traffic Metrics:</p>
+        <ul>
+          <li>Monthly Active Users (MAU): 2.7 billion</li>
+          <li>Daily Active Users (DAU): 400 million</li>
+          <li>Average Videos Watched per User per Day: 5</li>
+          <li>Total Daily Video Views: 400 million × 5 = 2 billion</li>
+        </ul>
+        <p>Upload & Storage Estimates:</p>
+        <ul>
+          <li>View-to-Upload Ratio: 100:1</li>
+          <li>Daily Video Uploads: 2.7 billion / 100 = 27 million</li>
+          <li>Average Video Size: 100 MB</li>
+          <li>Daily Storage Requirement: 27 million × 100 MB = 2.7 PB</li>
+        </ul>
+        <p>CDN Cost Estimation:</p>
+        <ul>
+          <li>Average Video Size in GB: 0.1 GB</li>
+          <li>CDN Cost per GB (e.g., AWS CloudFront): $0.01</li>
+          <li>Daily CDN Cost: 2.7 billion × 0.1 GB × $0.01 = $2.7 million</li>
+          <li>Monthly CDN Cost: $2.7 million × 30 = $81 million</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>System Design</h2>
+        <h3>Functional Requirements</h3>
+        <ul>
+          <li>Users should be able to upload videos</li>
+          <li>Users should be able to view videos</li>
+          <li>Users should be able to change video quality</li>
+          <li>
+            The system should keep the count of likes, dislikes, comments, and
+            views
+          </li>
+        </ul>
+
+        <h3>Non-Functional Requirements</h3>
+        <ul>
+          <li>
+            Video uploading should be fast and users should have a smooth
+            streaming experience
+          </li>
+          <li>
+            The system should be highly available, scalable, and reliable (can
+            compromise on consistency for availability)
+          </li>
+          <li>System should offer low latency and high throughput</li>
+          <li>System should be cost-efficient</li>
+        </ul>
+
+        <img src="b1_architecture.png" alt="system architecture" />
+
+        <h3>Core Components</h3>
+        <ul>
+          <li>Client Devices: Web browsers, mobile apps, smart TVs</li>
+          <li>
+            Web Server: Handles incoming HTTP requests and routes them
+            appropriately
+          </li>
+          <li>
+            API Server: Manages business logic, user authentication, and
+            metadata operations
+          </li>
+          <li>
+            Transcoding Server: Converts uploaded videos into multiple
+            resolutions and formats
+          </li>
+          <li>Video Storage (BLOB): Stores transcoded video files</li>
+          <li>
+            Content Delivery Network (CDN): Distributes video content globally
+            for fast access
+          </li>
+          <li>
+            Metadata Storage: Holds video metadata like titles, descriptions,
+            and user data
+          </li>
+          <li>
+            Metadata Cache: Caches frequently accessed metadata for quick
+            retrieval
+          </li>
+          <li>
+            Load Balancer: Distributes incoming traffic across servers to ensure
+            reliability
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Video Uploading Process</h3>
+        <p>
+          We use the <code>uploadVideo</code> API for uploading the video
+          content:
+        </p>
+        <pre>
+string uploadVideo(string apiKey, stream videoData, string videoTitle, string videoDescription, string videoCategory, string videoTags[], string videoLanguage, string videoLocation)
+    </pre
+        >
+        <p>Explanation of parameters:</p>
+        <ul>
+          <li>
+            <strong>apiKey:</strong> An identification of the registered account
+          </li>
+          <li><strong>videoData:</strong> Uploaded video data</li>
+          <li><strong>videoTitle:</strong> The title of the video</li>
+          <li>
+            <strong>videoDescription:</strong> The description text of the video
+          </li>
+          <li>
+            <strong>videoCategory:</strong> Video category data like sports,
+            education, etc
+          </li>
+          <li><strong>videoTags[]:</strong> A list of tags for the video</li>
+          <li>
+            <strong>videoLanguage:</strong> The language of the content like
+            English, Hindi, etc
+          </li>
+          <li>
+            <strong>videoLocation:</strong> The location where the video was
+            recorded
+          </li>
+        </ul>
+        <p>The video upload flow is divided into two parallel processes:</p>
+        <ol>
+          <li>Uploading the video content</li>
+          <li>Updating the video metadata</li>
+        </ol>
+
+        <h4>Uploading the Video Content</h4>
+        <p>
+          First, videos are uploaded by the user, and then transcoding servers
+          start encoding. Encoding converts videos into multiple resolutions and
+          formats. This can be parallelized. Popular videos can have an extra
+          compression pass for size efficiency.
+        </p>
+        <p>Video encoding types:</p>
+        <ul>
+          <li>Lossless: No data loss from original to new format</li>
+          <li>Lossy: Drops some data to reduce size</li>
+        </ul>
+        <p>After encoding:</p>
+        <ol>
+          <li>Store encoded videos in a transcoded database and CDN</li>
+          <li>Update metadata database and cache</li>
+        </ol>
+        <p>
+          Finally, API servers inform the client that the video is ready for
+          streaming.
+        </p>
+
+        <h4>Transcoding</h4>
+        <p>
+          Transcoding a video is resource-heavy. Different creators may need
+          watermarks, custom thumbnails, or high-definition processing. To
+          support various pipelines and parallelism, a DAG (Directed Acyclic
+          Graph) is used.
+        </p>
+
+        <img src="Transcoding_arch.png" alt="transcoding architecture" />
+        <ul>
+          <li>Inspection: Ensure video quality and integrity</li>
+          <li>
+            Video Encoding: Support multiple resolutions, codecs, bitrates
+          </li>
+          <li>Thumbnail: Either user-uploaded or system-generated</li>
+          <li>Watermark: Image overlay for branding or info</li>
+        </ul>
+
+        <img src="trans_Arch.png" alt="" />
+        <h5>Video Transcoding Architecture</h5>
+        <img src="Videotranscodingarchitecture.png" alt="" />
+
+        <h4>Preprocessor Responsibilities</h4>
+        <ul>
+          <li>Video splitting by GOP alignment</li>
+          <li>Splitting for compatibility with old devices/browsers</li>
+          <li>DAG generation based on config files</li>
+          <li>Caching segmented videos and metadata</li>
+        </ul>
+
+        <h4>DAG</h4>
+        <p>
+          The DAG scheduler splits the DAG into task stages and manages task
+          queues:
+        </p>
+        <ul>
+          <li>Task queue: Pending tasks</li>
+          <li>Worker queue: Worker availability info</li>
+          <li>Running queue: Info about running tasks</li>
+        </ul>
+
+        <h4>Task Workers</h4>
+        <p>Task workers execute the tasks defined in the DAG.</p>
+
+        <h4>Temporary Storage</h4>
+        <p>Different storage systems based on data type:</p>
+        <ul>
+          <li>Metadata in-memory caching</li>
+          <li>Video/audio in blob storage</li>
+        </ul>
+
+        <h4>Encoded Video</h4>
+        <p>Final output after encoding pipeline completion.</p>
+      </section>
+
+      <section>
+        <h3>Video Streaming Process</h3>
+        <p>We use the <code>viewVideo</code> API to stream video content:</p>
+        <pre>
+stream viewVideo(string apiKey, string videoId, int videoOffset, string codec, string videoResolution)
+    </pre
+        >
+        <p>Explanation:</p>
+        <ul>
+          <li><strong>apiKey:</strong> Registered account identification</li>
+          <li><strong>videoId:</strong> Video identifier</li>
+          <li>
+            <strong>videoOffset:</strong> Start time offset for resuming videos
+          </li>
+          <li><strong>codec:</strong> Video codec used</li>
+          <li>
+            <strong>videoResolution:</strong> Client's resolution preference
+          </li>
+        </ul>
+
+        <img src="hash_datastructure.png" alt="hashmap structure" />
+
+        <p>
+          Streaming is optimized by detecting device specs, bandwidth, and using
+          the closest CDN server.
+        </p>
+        <p>Popular videos are streamed from CDN, others from video storage.</p>
+        <p>
+          Standard protocols: MPEG-DASH, HLS, Microsoft Smooth Streaming, Adobe
+          HDS.
+        </p>
+      </section>
+
+      <section>
+        <h3>Metadata Schema</h3>
+        <p>Use MySQL to store metadata:</p>
+        <pre>
+users(user_id, name, email, profile_pic, verified)
+videos(video_id, user_id, title, description, tags[], resolution[], upload_time, view_count, storage_path)
+    </pre
+        >
+        <p>
+          Indexing: B-Tree index on <code>video_id</code> and
+          <code>user_id</code>
+        </p>
+
+        <h4>Step 2: Metadata Caching</h4>
+        <p>Use Redis for caching:</p>
+        <ul>
+          <li>Cache video metadata by <code>video_id</code></li>
+          <li>Cache user metadata by <code>user_id</code></li>
+        </ul>
+        <p>Set TTL for cache freshness.</p>
+
+        <h4>Step 3: Metadata Retrieval</h4>
+        <p>Use APIs to retrieve metadata:</p>
+        <ul>
+          <li>Get video metadata by <code>video_id</code></li>
+          <li>Get user metadata by <code>user_id</code></li>
+        </ul>
+
+        <img src="meta.png" alt="metadata mapping" />
+        <p>
+          The images describe that user_id 6 has video_id 10, user_id 9 has
+          video_id 75 and 81
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
